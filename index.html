@@ -280,7 +280,7 @@ function paint(){const searching=!!nz(q.value.trim());res.classList.toggle("on",
 function showPage(k,c){view={k,c};pageEl.textContent="";const name=NAMES[k];const sec=document.createElement("section");
  const bk=document.createElement("button");bk.type="button";bk.className="back";bk.textContent="← Inicio";bk.addEventListener("click",()=>goHome());
  const sh=document.createElement("div");sh.className="sh";sh.style.marginTop="22px";const h=document.createElement("h2");h.textContent=c?name+" · "+c:name;const n=document.createElement("span");const list=by(k).filter(s=>!c||s.c===c).sort((a,b)=>(b.h?1:0)-(a.h?1:0));n.textContent=list.length+(list.length===1?" nota":" notas");sh.append(h,n);
- sec.append(sh);if(k!=="dep")sec.append(mkChips(k,c,true));sec.append(mkGrid(list,false));pageEl.append(bk,sec);paint();window.scrollTo(0,0)}
+ sec.append(sh);if(k!=="dep")sec.append(mkChips(k,c,true));sec.append(mkGrid(list,false));pageEl.append(bk,sec);paint();window.scrollTo(0,Math.max(0,pageEl.getBoundingClientRect().top+window.scrollY-56))}
 function goHome(id){view=null;q.value="";run();if(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:reduce?"auto":"smooth"})}else window.scrollTo(0,0)}
 const NAVK={aguascalientes:"ags",mexico:"mx",mundo:"mundo",tendencias:"tend",deportes:"dep"};
 document.querySelectorAll(".links a").forEach(a=>a.addEventListener("click",e=>{const id=a.getAttribute("href").slice(1);if(NAVK[id]){e.preventDefault();q.value="";showPage(NAVK[id],null);return}if(view||nz(q.value.trim())){e.preventDefault();goHome(id)}}));
