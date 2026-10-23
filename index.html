@@ -296,5 +296,31 @@ function run(){const v=nz(q.value.trim());gr.textContent="";if(!v){paint();retur
 q.addEventListener("input",run);document.getElementById("sf").addEventListener("submit",e=>e.preventDefault());
 document.getElementById("c-dep").textContent=by("dep").length+" notas";
 </script>
+<style>
+#bee{position:fixed;left:0;top:0;width:54px;height:44px;pointer-events:none;z-index:60;opacity:0;will-change:transform}
+#bee .wl,#bee .wr{transform-origin:27px 20px;animation:beew .09s linear infinite alternate}
+#bee .wr{animation-delay:.045s}
+@keyframes beew{from{transform:scaleY(1)}to{transform:scaleY(.45)}}
+@media (prefers-reduced-motion:reduce){#bee{display:none}}
+</style>
+<svg id="bee" viewBox="0 0 54 44" aria-hidden="true">
+<ellipse class="wl" cx="22" cy="12" rx="9" ry="6" fill="#dff3ff" stroke="#8fb8d8" stroke-width="1" opacity=".9"/>
+<ellipse class="wr" cx="32" cy="12" rx="9" ry="6" fill="#dff3ff" stroke="#8fb8d8" stroke-width="1" opacity=".9"/>
+<ellipse cx="27" cy="26" rx="15" ry="10" fill="#ffc107"/>
+<path d="M21 17.5v17M28 16.5v19M35 18v16" stroke="#2b2118" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="43" cy="24" r="6.5" fill="#2b2118"/>
+<circle cx="45" cy="22.5" r="1.6" fill="#fff"/>
+<path d="M44 18.5q3-5 6-4M46 19q4-3 6-1" stroke="#2b2118" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+<path d="M12 26l-6 2 6 2z" fill="#2b2118"/>
+</svg>
+<script>
+(function(){var b=document.getElementById("bee");if(!b||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))return;
+function fly(){var W=innerWidth,H=innerHeight,dir=Math.random()<.5?1:-1,y0=H*(.18+Math.random()*.55),amp=28+Math.random()*40,fr=.006+Math.random()*.004,dur=9000+Math.random()*3000,t0=performance.now();b.style.opacity=1;
+function step(t){var p=(t-t0)/dur;if(p>=1){b.style.opacity=0;setTimeout(fly,6000+Math.random()*9000);return}
+var x=dir>0?-60+p*(W+120):W+60-p*(W+120),y=y0+Math.sin(p*W*fr*3)*amp+Math.sin(p*17)*6,tilt=Math.cos(p*W*fr*3)*10*dir;
+b.style.transform="translate("+x+"px,"+y+"px) scaleX("+(dir>0?1:-1)+") rotate("+tilt+"deg)";requestAnimationFrame(step)}
+requestAnimationFrame(step)}
+setTimeout(fly,1500)})();
+</script>
 
 </body></html>
